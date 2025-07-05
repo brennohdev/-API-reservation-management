@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 
 public class CreateResourceDTO {
   @NotBlank(message = "Name is required")
-  @Size(min= 1, max = 100, message = "Name must not exceed 100 characters")
+  @Size(min = 1, max = 100, message = "Name must not exceed 100 characters")
   private String name;
 
   private String description;
@@ -16,5 +16,15 @@ public class CreateResourceDTO {
   @Min(value = 0, message = "Capacity must be at least 1")
   private int capacity;
 
+  public String getName() {
+    return name;
+  }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public int getCapacity() {
+    return capacity;
+  }
 }
