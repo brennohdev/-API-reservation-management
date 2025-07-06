@@ -1,147 +1,127 @@
-🚀 Reservation Management API
-A RESTful API for a reservation management system, built with Java and Spring Boot. This project serves as a practical and in-depth exploration of modern software architecture and engineering best practices.
+# Reservation Management API
 
-📋 Table of Contents
-About the Project
+A REST API for a reservation management system, built with Java and Spring Boot. This project serves as a practical and in-depth study of software architecture and engineering best practices.
 
-🏛️ Architecture Decisions
+## Table of Contents
 
-🛠️ Technologies Used
+* [About the Project](#about-the-project)
+* [Architecture Decisions](#architecture-decisions)
+* [Technologies Used](#technologies-used)
+* [How to Run the Project](#how-to-run-the-project)
+* [API Documentation](#api-documentation)
+* [License](#license)
+* [Author](#author)
 
-🚀 How to Run the Project
+## About the Project
 
-📖 API Documentation
+The main goal of this API is not only to provide features of a reservation system, but also to serve as a study environment for applying advanced software engineering concepts in the Java/Spring ecosystem.
+The focus is on building a robust, scalable, testable, and maintainable system by following the principles of **Clean Architecture** and **Domain-Driven Design (DDD)**.
 
-📄 License
+## Architecture Decisions
 
-✍️ Author
+The structure of this project is designed to maximize decoupling and clarity, even in early stages. The main architectural decisions include:
 
-💻 About the Project
-The main objective of this API is not just to implement a reservation system, but to serve as a study case for applying advanced software engineering principles in the Java/Spring ecosystem.
+### Layered (Hexagonal) Architecture
 
-The focus is on building a system that is:
+The code is divided into four main layers:
 
-Robust
+* `domain`: Contains the purest business entities and rules, with no framework dependencies. It is the heart of the application.
+* `application`: Orchestrates business flows (use cases).
+* `infrastructure`: Contains technical implementations, such as database communication (repositories).
+* `adapters`: Connects the application to the external world (e.g., REST API controllers).
 
-Scalable
+### Use Case per Class
 
-Testable
+Each user action in the API is encapsulated in its own class (e.g., `CreateResourceUseCase`).
+This strictly adheres to the **Single Responsibility Principle (SRP)** and improves testability and clarity.
 
-Maintainable
+### Dependency Injection
 
-It follows Clean Architecture and Domain-Driven Design (DDD).
+Constructor-based dependency injection is used to manage component dependencies — a Spring Framework pillar that encourages low coupling.
 
-🏛️ Architecture Decisions
-The project’s structure was designed to promote clarity and low coupling from the start. Key architectural decisions include:
+### Centralized Exception Handling
 
-🔷 Hexagonal (Layered) Architecture
-The code is split into four main layers:
+A `GlobalExceptionHandler` annotated with `@RestControllerAdvice` intercepts business exceptions and translates them into standardized, meaningful HTTP responses — avoiding the leakage of internal application errors.
 
-domain: Contains pure business entities and logic, independent of frameworks — the core of the application.
+## Technologies Used
 
-application: Coordinates business use cases.
+* Java 17+
+* Spring Boot 3+
+* Spring Data JPA
+* H2 Database (in-memory, for development)
+* Maven (build and dependency manager)
+* Jakarta Bean Validation
 
-infrastructure: Handles technical details such as database access (Repositories).
+## How to Run the Project
 
-adapters: Interfaces with the outside world (e.g., REST API Controllers).
+### Prerequisites
 
-🧩 Use Case per Class
-Each action a user can perform is encapsulated in its own class (e.g., CreateResourceUseCase).
-This strictly adheres to the Single Responsibility Principle (SRP) and improves testability and readability.
+Make sure you have the following installed:
 
-🔄 Dependency Injection
-Constructor-based dependency injection is used to manage relationships between components, promoting loose coupling, a core value in the Spring ecosystem.
+* JDK (version 17 or higher)
+* Maven (version 3.8 or higher)
+* Git
 
-❗ Centralized Exception Handling
-A @RestControllerAdvice-based GlobalExceptionHandler intercepts business exceptions and converts them into consistent and meaningful HTTP responses, avoiding internal error leaks.
+### Running Locally
 
-🛠️ Technologies Used
-Java 17+
+```bash
+# Clone this repository
+git clone [https://github.com/your-username/your-repository.git](https://github.com/your-username/your-repository.git)
 
-Spring Boot 3+
-
-Spring Data JPA
-
-H2 Database (in-memory, for development)
-
-Maven (Build and Dependency Management)
-
-Jakarta Bean Validation
-
-🚀 How to Run the Project
-✅ Prerequisites
-Make sure the following are installed on your machine:
-
-Java JDK 17 or higher
-
-Maven 3.8 or higher
-
-Git
-
-▶️ Running the Application
-bash
-Copiar
-Editar
-# Clone the repository
-git clone https://github.com/your-username/your-repo.git
-
-# Navigate to the project directory
+# Navigate into the project folder
 cd reservation_management
 
-# Run the application using Maven
+# Run the project with Maven
 mvn spring-boot:run
-The API will be available at:
-http://localhost:8080
+```
+The API will be available at `http://localhost:8080`.
 
-📖 API Documentation
-📌 Resource: Resource
-➕ Create Resource
-POST /api/resources
+## API Documentation
 
-Creates a new resource (e.g., meeting room, hotel room).
+The following endpoints are currently available.
 
-Request Body:
+### Resource
 
-json
-Copiar
-Editar
+#### `POST /api/resources`
+
+Creates a new resource (e.g., a meeting room, a hotel room).
+
+**Request Body:**
+```json
 {
-  "name": "Meeting Room Alpha",
-  "description": "Room with projector and whiteboard.",
+  "name": "Alpha Meeting Room",
+  "description": "Main room with a projector and whiteboard.",
   "capacity": 10
 }
-Success Response:
+```
 
-Status: 201 Created
+**Success Response:**
+* **Code:** `201 Created`
+* **Body:** The created resource object, including its ID.
+    ```json
+    {
+      "id": 1,
+      "name": "Alpha Meeting Room",
+      "description": "Main room with a projector and whiteboard.",
+      "capacity": 10
+    }
+    ```
 
-Body:
+**Error Responses:**
+* **Code:** `409 Conflict` - If a resource with the same `name` already exists.
+    ```json
+    {
+      "timestamp": "2025-07-06T00:53:12.428Z",
+      "status": 409,
+      "message": "A resource with the name 'Alpha Meeting Room' already exists."
+    }
+    ```
+* **Code:** `400 Bad Request` - If any request field fails validation (e.g., blank `name` or null `capacity`).
 
-json
-Copiar
-Editar
-{
-  "id": 1,
-  "name": "Meeting Room Alpha",
-  "description": "Room with projector and whiteboard.",
-  "capacity": 10
-}
-Error Responses:
+## License
 
-409 Conflict – A resource with the same name already exists.
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for more details.
 
-json
-Copiar
-Editar
-{
-  "timestamp": "2025-07-06T00:53:12.428Z",
-  "status": 409,
-  "message": "A resource with the name 'Meeting Room Alpha' already exists."
-}
-400 Bad Request – Validation failure (e.g., empty name, null capacity).
+## Author
 
-📄 License
-This project is licensed under the MIT License.
-See the LICENSE file for details.
-
-✍️ Author
 Brenno Costa
