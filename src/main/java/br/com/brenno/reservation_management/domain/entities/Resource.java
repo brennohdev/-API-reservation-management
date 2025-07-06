@@ -22,7 +22,7 @@ public class Resource {
   private String description;
 
   @Column(nullable = false)
-  private int capacity;
+  private Integer capacity;
 
   public Resource() {
   }
@@ -45,7 +45,13 @@ public class Resource {
     return description;
   }
 
-  public int getCapacity() {
+  public Integer getCapacity() {
     return capacity;
+  }
+
+  public void updateInfo(String name, String description, Integer capacity) {
+    this.name = name;
+    this.description = description;
+    this.capacity = capacity;
   }
 }
