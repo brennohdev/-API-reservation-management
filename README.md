@@ -116,6 +116,7 @@ Creates a new resource (e.g., a meeting room, a hotel room).
       "message": "A resource with the name 'Alpha Meeting Room' already exists."
     }
     ```
+* **Code:** `400 Bad Request` - If any request field fails validation (e.g., blank `name` or null `capacity`).
   
   #### `GET /api/resources/:id`
 
@@ -134,7 +135,7 @@ Get a specific resource by id (e.g., a meeting room, a hotel room).
     ```
 
 **Error Responses:**
-* **Code:** `409 Conflict` - If the resource with the specified `id` does not exist.
+* **Code:** `404 Conflict` - If the resource with the specified `id` does not exist.
     ```json
     {
       "timestamp": "2025-07-06T00:53:12.428Z",
@@ -143,7 +144,7 @@ Get a specific resource by id (e.g., a meeting room, a hotel room).
     }
     ```
   
-* **Code:** `400 Bad Request` - If any request field fails validation (e.g., blank `name` or null `capacity`).
+
 
 ## License
 
