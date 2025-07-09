@@ -1,6 +1,6 @@
 package br.com.brenno.reservation_management.application.useCases.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.CreateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceDTO;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import br.com.brenno.reservation_management.domain.exceptions.Resource.ResourceAlreadyExistsException;
 import br.com.brenno.reservation_management.infrastructure.repositories.ResourceRepository;
@@ -30,8 +30,6 @@ public class CreateResourceUseCase {
         dto.getCapacity()
     );
 
-    Resource savedResource = this.resourceRepository.save(newResource);
-
-    return savedResource;
+    return this.resourceRepository.save(newResource);
   }
 }

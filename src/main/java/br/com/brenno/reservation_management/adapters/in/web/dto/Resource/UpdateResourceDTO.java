@@ -1,4 +1,4 @@
-package br.com.brenno.reservation_management.adapters.in.web.dto;
+package br.com.brenno.reservation_management.adapters.in.web.dto.Resource;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

@@ -1,7 +1,7 @@
 package br.com.brenno.reservation_management.adapters.controllers.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.CreateResourceDTO;
-import br.com.brenno.reservation_management.adapters.in.web.dto.UpdateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceDTO;
 import br.com.brenno.reservation_management.application.useCases.Resource.*;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import jakarta.validation.Valid;

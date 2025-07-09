@@ -1,6 +1,6 @@
 package br.com.brenno.reservation_management.application.useCases.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.UpdateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceDTO;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import br.com.brenno.reservation_management.domain.exceptions.Resource.ResourceNotFoundException;
 import br.com.brenno.reservation_management.infrastructure.repositories.ResourceRepository;

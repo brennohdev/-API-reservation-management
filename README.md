@@ -77,74 +77,7 @@ mvn spring-boot:run
 The API will be available at `http://localhost:8080`.
 
 ## API Documentation
-
-The following endpoints are currently available.
-
-### Resource
-
-#### `POST /api/resources`
-
-Creates a new resource (e.g., a meeting room, a hotel room).
-
-**Request Body:**
-```json
-{
-  "name": "Alpha Meeting Room",
-  "description": "Main room with a projector and whiteboard.",
-  "capacity": 10
-}
-```
-
-**Success Response:**
-* **Code:** `201 Created`
-* **Body:** The created resource object, including its ID.
-    ```json
-    {
-      "id": 1,
-      "name": "Alpha Meeting Room",
-      "description": "Main room with a projector and whiteboard.",
-      "capacity": 10
-    }
-    ```
-
-**Error Responses:**
-* **Code:** `409 Conflict` - If a resource with the same `name` already exists.
-    ```json
-    {
-      "timestamp": "2025-07-06T00:53:12.428Z",
-      "status": 409,
-      "message": "A resource with the name 'Alpha Meeting Room' already exists."
-    }
-    ```
-* **Code:** `400 Bad Request` - If any request field fails validation (e.g., blank `name` or null `capacity`).
-  
-  #### `GET /api/resources/:id`
-
-Get a specific resource by id (e.g., a meeting room, a hotel room).
-
-**Success Response:**
-* **Code:** `200 OK`
-* **Body:** The resource object.
-    ```json
-    {
-      "id": 1,
-      "name": "Alpha Meeting Room",
-      "description": "Main room with a projector and whiteboard.",
-      "capacity": 10
-    }
-    ```
-
-**Error Responses:**
-* **Code:** `404 Conflict` - If the resource with the specified `id` does not exist.
-    ```json
-    {
-      "timestamp": "2025-07-06T00:53:12.428Z",
-      "status": 404,
-      "message": "A resource with the id '{id}' was not found."
-    }
-    ```
-  
-
+The API documentation is available at `http://localhost:8080/swagger-ui.html` when the application is running. It provides an interactive interface to explore the available endpoints, request parameters, and response formats.
 
 ## License
 
