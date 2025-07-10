@@ -1,6 +1,6 @@
 package br.com.brenno.reservation_management.application.useCases.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceValidation;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import br.com.brenno.reservation_management.domain.exceptions.Resource.ResourceAlreadyExistsException;
 import br.com.brenno.reservation_management.infrastructure.repositories.ResourceRepository;
@@ -16,7 +16,7 @@ public class CreateResourceUseCase {
     this.resourceRepository = resourceRepository;
   }
 
-  public Resource execute(CreateResourceDTO dto) {
+  public Resource execute(CreateResourceValidation dto) {
     Optional<Resource> existingResource = resourceRepository.findByName(dto.getName());
 
     if (existingResource.isPresent()) {

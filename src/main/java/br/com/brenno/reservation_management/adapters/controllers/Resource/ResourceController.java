@@ -1,7 +1,7 @@
 package br.com.brenno.reservation_management.adapters.controllers.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceDTO;
-import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.CreateResourceValidation;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceValidation;
 import br.com.brenno.reservation_management.application.useCases.Resource.*;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import jakarta.validation.Valid;
@@ -35,7 +35,7 @@ public class ResourceController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Resource create(@RequestBody @Valid CreateResourceDTO dto) {
+  public Resource create(@RequestBody @Valid CreateResourceValidation dto) {
 
     return this.createResourceUseCase.execute(dto);
   }
@@ -54,7 +54,7 @@ public class ResourceController {
 
   @PutMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Resource update(@PathVariable Long id, @RequestBody @Valid UpdateResourceDTO dto) {
+  public Resource update(@PathVariable Long id, @RequestBody @Valid UpdateResourceValidation dto) {
     return this.updateResourceUseCase.execute(id, dto);
   }
 

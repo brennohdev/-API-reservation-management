@@ -1,6 +1,6 @@
 package br.com.brenno.reservation_management.application.useCases.User;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.User.RegisterUserDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.User.RegisterUserValidation;
 import br.com.brenno.reservation_management.domain.entities.User;
 import br.com.brenno.reservation_management.domain.enums.User.UserRole;
 import br.com.brenno.reservation_management.domain.exceptions.Resource.EmailAlreadyExistsException;
@@ -20,7 +20,7 @@ public class RegisterUserUseCase {
     this.passwordEncoder = passwordEncoder;
   }
 
-  public User execute(RegisterUserDTO dto) {
+  public User execute(RegisterUserValidation dto) {
     Optional<User> existingUser = userRepository.findByEmail(dto.getEmail());
 
     if (existingUser.isPresent()) {

@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 
 @Getter
-public class RegisterUserDTO {
+public class RegisterUserValidation {
   @Email(message = "Invalid email format.")
   @NotBlank(message = "Email cannot be blank.")
   private String email;

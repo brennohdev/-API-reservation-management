@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 
 @Getter
-public class CreateResourceDTO {
+public class CreateResourceValidation {
   @NotBlank(message = "Name is required")
   @Size(min = 1, max = 100, message = "Name must not exceed 100 characters")
   private String name;

@@ -1,6 +1,6 @@
 package br.com.brenno.reservation_management.application.useCases.Resource;
 
-import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceDTO;
+import br.com.brenno.reservation_management.adapters.in.web.dto.Resource.UpdateResourceValidation;
 import br.com.brenno.reservation_management.domain.entities.Resource;
 import br.com.brenno.reservation_management.domain.exceptions.Resource.ResourceNotFoundException;
 import br.com.brenno.reservation_management.infrastructure.repositories.ResourceRepository;
@@ -14,7 +14,7 @@ public class UpdateResourceUseCase {
     this.resourceRepository = resourceRepository;
   }
 
-  public Resource execute(Long id, UpdateResourceDTO dto) {
+  public Resource execute(Long id, UpdateResourceValidation dto) {
     Resource existingResource = resourceRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Resource with id '" + id + "' not found."));
 
